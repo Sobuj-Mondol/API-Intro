@@ -16,6 +16,14 @@ function lodeAlbums(){
     .then(res => res.json())
     .then(Data => console.log(Data))
 }
-function displayUser(Data){
+// function call
+function displayUser(Data,email,userName){
+    let ul = document.getElementById('users');
     console.log(Data);
+    for(let user of Data){
+       let li = document.createElement('li');
+       li.innerText = `name: ${user.name}, email: ${email}, userName: ${userName}`;
+       ul.appendChild(li);
+    }
 }
+
