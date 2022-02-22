@@ -17,3 +17,16 @@ function displayPost(Datas){
         console.log(Data);
     }
 }
+// post
+fetch('https://jsonplaceholder.typicode.com/posts', {
+  method: 'POST',
+  body: JSON.stringify({
+    title: 'post oparoter function',
+    body: 'bar',
+  }),
+  headers: {
+    'Content-type': 'application/json; charset=UTF-8',
+  },
+})
+  .then((res) => res.json())
+  .then((Data) => console.log(Data));
