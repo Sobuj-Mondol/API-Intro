@@ -10,6 +10,11 @@ const searchFild = () => {
      // load data
     const url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${searchText}
     `;
+/*    
+    const res = await fetch(url);
+    const data = await res.json();
+    displaySearchResult(data.meals)
+*/
     fetch(url)
     .then(res => res.json())
     .then(data => displaySearchResult(data.meals));
@@ -43,16 +48,24 @@ const displaySearchResult = meals => {
     }
 }
 //
-const loadMealData = mealId => {
+const loadMealData = async mealId => {
     const url = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`;
+    
+    const res = await fetch(url);
+    const data = await res.json();
+    updateMeal(data.meals[0]);
+    //
+/* 
     fetch(url)
     .then(res => res.json())
     .then(data => updateMeal(data.meals[0]))
+*/
 }
 //
 const updateMeal = meal => {
     console.log(meal);
     const mealDetails = document.getElementById('meal-detail');
+    mealDetails.textContent = '';
     const div = document.createElement('div');
     div.innerHTML = `
     <img src="${meal.strMealThumb}" class="card-img-top" alt="...">
@@ -64,4 +77,3 @@ const updateMeal = meal => {
     `;
     mealDetails.appendChild(div);
 }
-
